@@ -5,13 +5,17 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores(['dist', 'release']),
   {
-    files: ['app/preload.js'],
+    files: ['app/preload.cjs'],
     languageOptions: {
       sourceType: 'commonjs',
       globals: globals.node,
     },
+  },
+  {
+    files: ['app/**/*.js'],
+    languageOptions: { globals: globals.node },
   },
   {
     files: ['**/*.{js,jsx}'],

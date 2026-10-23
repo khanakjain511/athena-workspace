@@ -9,7 +9,7 @@ import './components/Workspace.css'
 import './motion.css'
 import './components/devclub/devclub.css'
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000'
+const API_BASE_URL = window.athena?.isPackaged ? window.location.origin : import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000'
 
 async function request(path, options = {}) {
   const response = await fetch(`${API_BASE_URL}${path}`, { ...options, headers: { 'Content-Type': 'application/json', ...options.headers } })
@@ -159,6 +159,7 @@ function App() {
     setError('')
     try {
       const submission = await request('/exam/submit', { method: 'POST', body: JSON.stringify({ sessionId }) })
+      if (window.athena) await window.athena.stopTimerOnMain()
       setResult(submission.result)
       setScreen('result')
       streamRef.current?.getTracks().forEach((track) => track.stop())

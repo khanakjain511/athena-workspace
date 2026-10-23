@@ -1,14 +1,15 @@
 {
-  "name": "athena5",
+  "name": "athena-workspace",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "electron": "electron ./app/app.js"
+    "electron": "electron .",
+    "package:mac": "npm run build && electron-builder --mac dmg --universal"
   },
   "dependencies": {
     "framer-motion": "^14.6.0",
@@ -22,10 +23,65 @@
     "@types/react-dom": "^19.2.7",
     "@vitejs/plugin-react": "^6.1.1",
     "electron": "^44.3.0",
+    "electron-builder": "^26.15.3",
     "eslint": "^10.10.0",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.6",
     "globals": "^17.12.0",
     "vite": "^8.3.0"
+  },
+  "description": "A desktop assessment workspace with setup, questions, and results.",
+  "author": {
+    "name": "khanakjain511"
+  },
+  "main": "app/app.js",
+  "build": {
+    "appId": "com.khanakjain511.athena",
+    "productName": "Athena",
+    "artifactName": "Athena-${version}-${arch}.${ext}",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "app/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "../backend 2",
+        "to": "backend",
+        "filter": [
+          "server.js",
+          "package.json",
+          "data/questions.json",
+          "node_modules/**/*",
+          "!node_modules/.cache/**/*"
+        ]
+      }
+    ],
+    "mac": {
+      "category": "public.app-category.education",
+      "identity": "-",
+      "extendInfo": {
+        "NSCameraUsageDescription": "Athena uses your camera for the assessment preview and local assessment snapshots."
+      }
+    },
+    "dmg": {
+      "title": "Athena",
+      "contents": [
+        {
+          "x": 150,
+          "y": 190,
+          "type": "file"
+        },
+        {
+          "x": 420,
+          "y": 190,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    }
   }
 }
