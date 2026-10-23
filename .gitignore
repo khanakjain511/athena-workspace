@@ -1,0 +1,14 @@
+node_modules/
+dist/
+coverage/
+.DS_Store
+*.log
+.env
+.env.*
+!.env.example
+**/user-camera-snap/
+backend 2/data/sessions.json
+Athena-Clone-3/image.png
+Athena-Clone-3/src/assets/hero.png
+Athena-Clone-3/src/assets/react.svg
+Athena-Clone-3/src/assets/vite.svg
