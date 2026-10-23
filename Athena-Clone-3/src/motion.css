@@ -1,0 +1,13 @@
+.page-content { min-width: 0; }
+.tab-indicator { position: absolute; right: 0; bottom: -2px; left: 0; height: 2px; background: var(--blue); pointer-events: none; }
+.guide-content { min-width: 0; }
+.section-tabs { isolation: isolate; }
+.btn > svg, .help-button > svg { transition: color 140ms ease; }
+.name-input { transition: border-color 160ms ease, box-shadow 160ms ease; }
+.name-input:focus { border-color: #8daeea; box-shadow: 0 0 0 3px #edf3ff; }
+.option { transition: border-color 150ms ease, background-color 150ms ease, color 150ms ease; }
+.metric-card { transition: border-color 160ms ease; }
+.metric-complete { border-color: #dbe9e2; }
+@media (prefers-reduced-motion: reduce) {
+  .workspace button, .workspace input, .workspace svg, .workspace .option, .workspace .metric-card { transition: none; }
+}
